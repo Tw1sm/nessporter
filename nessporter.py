@@ -1,4 +1,4 @@
-#!/urs/bin/env python
+#!/usr/bin/env python
 
 ################
 # Created by: Matthew Creel (Tw1sm)
