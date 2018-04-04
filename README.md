@@ -9,7 +9,7 @@ Uses Python 2.7.
 
 ## Install ##
 ```bash
-$ git clone https://github.com/Tw1sm/nessporter
+$ git clone https://github.com/Tw1sm/nessporter.git
 $ cd nessporter
 $ pip install -r requirements.txt
 ```
