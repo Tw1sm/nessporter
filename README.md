@@ -71,7 +71,7 @@ optional arguments:
   -p PORT     port Nessus is running on. Defaults to 8834
 ```
 
-Example connect to Nessus on local system:
+Example of connection to Nessus on local system:
 ```bash
 $ python nessporter.py -u Tw1sm
 ```
