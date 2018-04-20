@@ -7,6 +7,7 @@
 # Last Update: 04/04/2018
 ################
 
+import warnings
 import getpass
 import argparse
 import requests
@@ -252,18 +253,20 @@ def main():
         payload = {'username':user, 'password':pw}       
         headers = {'Content-Type':'application/json'}
         print '[*] Attempting login at {}'.format(url)
-        try:      
-            r = requests.post(url + 'session', headers=headers, json=payload, verify=False)
-            parsed = json.loads(r.text)
-            if parsed.keys()[0] == 'token':        
-                token = parsed['token']
-                break
-            elif parsed['error']:        
-                print '[!] Login attempt failed: {}'.format(parsed['error'])        
-        except Exception, e:
-            print '[!] Error attempting connection:'            
-            print '\t{}\n'.format(e)
-            sys.exit()        
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+            try:      
+                r = requests.post(url + 'session', headers=headers, json=payload, verify=False)
+                parsed = json.loads(r.text)
+                if parsed.keys()[0] == 'token':        
+                    token = parsed['token']
+                    break
+                elif parsed['error']:        
+                    print '[!] Login attempt failed: {}'.format(parsed['error'])    
+            except Exception, e:
+                print '[!] Error attempting connection:'            
+                print '\t{}\n'.format(e)
+                sys.exit()        
 
     ids = listfolders(url, token)
     
